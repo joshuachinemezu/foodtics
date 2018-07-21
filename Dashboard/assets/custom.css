@@ -69,3 +69,8 @@ h6,
     margin-top: 10px;
     font-weight: bold;
 }
+
+.topy-bar {
+    padding: 19px 30px;
+    background-color: white;
+}
