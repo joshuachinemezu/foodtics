@@ -87,3 +87,22 @@ h6,
 .text-green {
     color: #0e7935;
 }
+
+.profile-preview {
+    height: 138px;
+    width: 100%;
+    border-radius: 13px;
+    /* background-color: red; */
+    background-size: cover;
+    background-position: center;
+}
+
+.dispp {
+    font-size: 14px;
+    margin-left: 18px;
+}
+
+.dispp-label {
+    font-size: 16px !important;
+    margin-top: 5px !important;
+}
