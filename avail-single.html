@@ -25,6 +25,7 @@
 </head>
 
 <body class="">
+
     <div class="wrapper ">
         <div class="sidebar" data-color="orange">
             <div class="logo">
@@ -98,9 +99,10 @@
                                         <div class="form-group label-floating">
                                             <label class="control-label text-bold">Food Item</label>
                                             <select class="form-control sign-input" name="" onchange="warningaa(this);">
-                                                <option selected>Maize Crop</option>
-                                                <option value="leg">Legumes</option>
-                                                <option>Yam</option>
+                                                <option selected>Please select product</option>
+                                                <option value="goat">Goat</option>
+                                                <option value="pig">Pig</option>
+                                                <option value="rabbits">Rabbits</option>
                                             </select>
                                         </div>
                                         <div class="form-group label-floating">
@@ -130,7 +132,7 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <div class="table-responsive">
+                                <div class="table-responsive" id="farmers">
                                     <h4>Farmers who Sell This Item</h4>
 
                                     <table class="table table-hover">
@@ -186,6 +188,10 @@
                                 </div>
                             </div>
 
+                            <script>
+                                document.getElementById("farmers").style.display = "none";
+                            </script>
+
                         </div>
                     </div>
                 </div>
@@ -237,9 +243,11 @@
     });
 
     function warningaa(obj) {
-        alert("hello")
-        if (obj.value == "leg") {
-            alert('If you choose this option, you can not receive any infomation');
+        // obj.value == "leg"
+        if (obj != "") {
+
+            $("#farmers").slideDown();
+            // document.getElementById("farmers").style.display = "block";
         }
     }
 </script>
