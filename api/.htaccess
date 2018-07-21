@@ -1,0 +1,11 @@
+RewriteEngine on
+RewriteBase /
+RewriteCond %{REQUEST_URI} ^/admin/ [NC]
+RewriteRule ^(.*)$ /index.php/errors/page_missing [L]
+
+RewriteCond %{HTTP_HOST} ^admin\.thenewbroker\.com$
+RewriteCond $1 !^admin/
+RewriteRule ^(.*)$ /admin/$1 [L]
+
+RewriteCond $1 !^(index\.php|assets|img|css|js|robots\.txt|admin)
+RewriteRule ^(.*)$ /index.php/$1 [L]
