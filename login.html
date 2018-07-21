@@ -302,6 +302,8 @@
 
                             toastr.success("Login successful");
                             localStorage.setItem('user_hash', jsonStr.user_hash);
+                            localStorage.setItem('user_name', jsonStr.fullname);
+                            localStorage.setItem('user_email', jsonStr.email);
 
                             window.location = "https://joshuachinemezu.github.io/foodtics/analytics.html"
 
