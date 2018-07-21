@@ -74,3 +74,12 @@ h6,
     padding: 19px 30px;
     background-color: white;
 }
+
+.sign-input {
+    border: 1px solid #dedede !important;
+    background-color: white;
+    border: 0px;
+    border-radius: 0px;
+    width: 100% !important;
+    height: 40px !important;
+}
