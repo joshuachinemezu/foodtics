@@ -43,13 +43,13 @@
                             <p>Dashboard</p>
                         </a>
                     </li>
-                    <li class="active">
+                    <li>
                         <a href="availabilty.html ">
                             <i class="now-ui-icons ui-1_bell-53 "></i>
                             <p>Food Availability</p>
                         </a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="drivers.html ">
                             <i class="now-ui-icons ui-1_bell-53 "></i>
                             <p>Drivers</p>
@@ -92,97 +92,68 @@
                     <div class="col-md-12">
                         <div class="card card-stats">
                             <div class="card-body">
-                                <h3>Food Availability</h3>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group label-floating">
-                                            <label class="control-label text-bold">Food Item</label>
-                                            <select class="form-control sign-input" name="" disabled>
-                                                <option selected>Maize Crop</option>
-                                                <option>Legumes</option>
-                                                <option>Yam</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group label-floating">
-                                            <label class="control-label text-bold">Availability</label>
-                                            <div class="progress-container">
-                                                <div class="progress">
-                                                    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 25%;    background-color: #0e7935;
-                                                    height: 0.4rem;    background-color: #0e7935;
-                                                    width: 25%;
-                                                    height: 0.4rem;">
-                                                        <!-- <span class="progress-value">25%</span> -->
-                                                    </div>
+                                <h3 style="display: inline-block;">Request a Driver</h3>
+                                <a href="drivers.html" class=" pull-right btn">View Request</a>
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label text-bold">Pickup State</label>
+                                                <select class="form-control sign-input" name="">
+                                                    <option>Lagos</option>
+                                                    <option>Ogun</option>
+                                                    <option>Abuja</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group label-floating">
+                                                <label class="control-label text-bold">Phone Number</label>
+                                                <div class="form-group label-floating">
+                                                    <input type="text" class="form-control sign-input ">
+                                                    <span class="material-input"></span>
                                                 </div>
                                             </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group label-floating">
-                                            <label class="control-label text-bold">Location</label>
-                                            <div class="form-group label-floating is-empty">
-                                                <input type="text" class="form-control sign-input " value="Lagos, Nigeria" disabled>
-                                                <span class="material-input"></span>
+                                            <div class="form-group label-floating">
+                                                <label class="control-label text-bold">Amount Payable</label>
+                                                <div class="form-group label-floating">
+                                                    <input type="number" class="form-control sign-input " placeholder="N">
+                                                    <span class="material-input"></span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group label-floating">
+                                                <label class="control-label text-bold">Delivery Type</label>
+                                                <select class="form-control sign-input" name="">
+                                                    <option>Pick Up at Location</option>
+                                                    <option>Delivered to my House</option>
+                                                </select>
                                             </div>
                                         </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label text-bold">Pickup Address</label>
+                                                <div class="form-group label-floating">
+                                                    <input type="text" class="form-control sign-input ">
+                                                    <span class="material-input"></span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group label-floating">
+                                                <label class="control-label text-bold">Crop Name</label>
+                                                <div class="form-group label-floating">
+                                                    <input type="text" class="form-control sign-input ">
+                                                    <span class="material-input"></span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group label-floating">
+                                                <label class="control-label text-bold">Food Crop Description</label>
+                                                <div class="form-group label-floating">
+                                                    <textarea class="form-control sign-input" placeholder="Here can be your nice text" rows="5" style="    height: 324px!important;"></textarea>
+                                                </div>
+                                            </div>
 
+                                        </div>
                                     </div>
-                                </div>
-                                <hr>
-                                <h4>Farmers who Sell This Item</h4>
-                                <div class="table-responsive">
-                                    <table class="table table-hover">
-                                        <thead class="">
+                                    <a class="btn bg-green text-white" href="avail-single.html" role="button">Send Request</a>
+                                </form>
 
-                                            <tr>
-                                                <th>
-                                                    Name
-                                                </th>
-                                                <th>
-                                                    Location
-
-                                                </th>
-
-                                                <th>
-
-                                                    Address
-
-                                                </th>
-                                                <th>
-
-                                                    Other Product
-
-                                                </th>
-
-
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <a href="farmers-profile.html" class="text-green">
-                                                        Adeniran Opeyemi
-                                                    </a>
-
-                                                </td>
-                                                <td>
-                                                    Lagos State
-                                                </td>
-                                                <td>
-
-                                                    7, Ogun road, Nigeria
-
-                                                </td>
-                                                <td>
-
-                                                    Legume, Cash Crops
-
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
                             </div>
 
                         </div>
