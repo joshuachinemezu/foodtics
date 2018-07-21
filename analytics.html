@@ -84,10 +84,11 @@
 
                 if (jsonStr.status == "success") {
 
-                    if (jsonStr.code == 0) {
+                    if (jsonStr.code == 1) {
 
-                        toastr.success("Login successful");
-                        localStorage.setItem('user_hash', jsonStr.user_hash);
+                        toastr.success("Welcome " + jsonStr.fullname);
+                        document.getElementById("fullname").innerHTML = jsonStr.fullname
+
 
                         // window.location =
                         //     "https://joshuachinemezu.github.io/foodtics/analytics.html"
@@ -164,7 +165,8 @@
         <div class="main-panel ">
             <div class="topy-bar text-right">
                 <i class="now-ui-icons users_single-02 "></i>
-                Hello, Adeniran Opeyemi</div>
+                <span id="fullname"></span>
+            </div>
             <!-- Navbar -->
             <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute bg-primary fixed-top " style="top: 62px;">
                 <div class="container-fluid ">

@@ -115,7 +115,8 @@ class Auth extends CI_Controller
      'status' => 'success',
      'code'   => 1,
     );
-    echo json_encode($res);exit;
+    $this->view->render($res);
+
    }
 
   }
@@ -132,7 +133,21 @@ class Auth extends CI_Controller
 
   $user_info = $this->auth_model->getUserinfo($userHash);
 
-  echo json_encode($user_info);exit;
+  if (!$user_info) {
+   $res = array(
+    'status' => 'error',
+    'code'   => 1,
+   );
+   echo json_encode($res);exit;
+  }
+
+  $res = array(
+   'status'   => 'success',
+   'fullname' => $user_info[0]->account_name,
+   'email'    => $user_info[0]->account_email,
+   'code'     => 1,
+  );
+  echo json_encode($res);exit;
 
  }
 
