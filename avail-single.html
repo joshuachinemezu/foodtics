@@ -21,6 +21,9 @@
 
     <link href="dashboard/demo/demo.css" rel="stylesheet" />
     <link href="dashboard/custom.css" rel="stylesheet" />
+    <script src="dashboard/js/core/jquery.min.js "></script>
+
+    <script src="dashboard/js/auth.js"></script>
 
 </head>
 
@@ -86,7 +89,8 @@
         <div class="main-panel ">
             <div class="topy-bar text-right">
                 <i class="now-ui-icons users_single-02 "></i>
-                Hello, Adeniran Opeyemi</div>
+                <span id="fullname"></span>
+            </div>
 
             <div class="content " style="margin-top: 17px;">
                 <div class="row">
@@ -237,10 +241,7 @@
 <script src="dashboard/js/now-ui-dashboard.js?v=1.0.1 "></script>
 <script src="dashboard/demo/demo.js "></script>
 <script>
-    $(document).ready(function () {
-        // Javascript method's body can be found in assets/js/demos.js
-        demo.initDashboardPageCharts();
-    });
+
 
     function warningaa(obj) {
         // obj.value == "leg"

@@ -106,8 +106,8 @@ class Auth extends CI_Controller
 
     $res = array(
      'user_hash' => $user_id[0]->account_hash,
-     'fullname'  => $user_info[0]->account_name,
-     'email'     => $user_info[0]->account_email,
+     'fullname'  => $user_id[0]->account_name,
+     'email'     => $user_id[0]->account_email,
      'status'    => 'success',
      'code'      => 0,
     );
