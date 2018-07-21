@@ -1,22 +1,22 @@
 {
-	"description": "The CodeIgniter framework",
-	"name": "codeigniter/framework",
-	"type": "project",
-	"homepage": "https://codeigniter.com",
-	"license": "MIT",
-	"support": {
-		"forum": "http://forum.codeigniter.com/",
-		"wiki": "https://github.com/bcit-ci/CodeIgniter/wiki",
-		"irc": "irc://irc.freenode.net/codeigniter",
-		"source": "https://github.com/bcit-ci/CodeIgniter"
-	},
-	"require": {
-		"php": ">=5.2.4"
-	},
-	"suggest": {
-		"paragonie/random_compat": "Provides better randomness in PHP 5.x"
-	},
-	"require-dev": {
-		"mikey179/vfsStream": "1.1.*"
-	}
+  "description": "Foodtics API",
+  "name": "codeigniter/framework",
+  "type": "project",
+  "homepage": "https://joshuachinemezu.github.io/foodtics/",
+  "license": "MIT",
+  "support": {
+    "forum": "http://github.com/joshuachinemezu/foodtics",
+    "wiki": "http://github.com/joshuachinemezu/foodtics",
+    "irc": "irc://irc.freenode.net/codeigniter",
+    "source": "http://github.com/joshuachinemezu/foodtics"
+  },
+  "require": {
+    "php": ">=5.2.4"
+  },
+  "suggest": {
+    "paragonie/random_compat": "Provides better randomness in PHP 5.x"
+  },
+  "require-dev": {
+    "mikey179/vfsStream": "1.1.*"
+  }
 }
