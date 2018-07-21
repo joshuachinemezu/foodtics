@@ -97,9 +97,9 @@
                                     <div class="col-md-6">
                                         <div class="form-group label-floating">
                                             <label class="control-label text-bold">Food Item</label>
-                                            <select class="form-control sign-input" name="">
+                                            <select class="form-control sign-input" name="" onchange="warningaa(this);">
                                                 <option selected>Maize Crop</option>
-                                                <option>Legumes</option>
+                                                <option value="leg">Legumes</option>
                                                 <option>Yam</option>
                                             </select>
                                         </div>
@@ -130,8 +130,9 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <h4>Farmers who Sell This Item</h4>
                                 <div class="table-responsive">
+                                    <h4>Farmers who Sell This Item</h4>
+
                                     <table class="table table-hover">
                                         <thead class="">
 
@@ -234,6 +235,13 @@
         // Javascript method's body can be found in assets/js/demos.js
         demo.initDashboardPageCharts();
     });
+
+    function warningaa(obj) {
+        alert("hello")
+        if (obj.value == "leg") {
+            alert('If you choose this option, you can not receive any infomation');
+        }
+    }
 </script>
 
 </html>
