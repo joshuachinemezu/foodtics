@@ -4,6 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 // General Routes
 $route['home']            = 'Pages/index';
 $route['login']           = 'Auth/login';
+$route['register']        = 'Auth/register';
 $route['forgot_password'] = 'Pages/forgot_password';
 $route['logout']          = 'Pages/logout';
 $route['blog']            = 'Pages/blog';
