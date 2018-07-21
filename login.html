@@ -58,7 +58,7 @@
 
     <div class="container min-h">
         <div class="row">
-            <div class="col-sm-8 col-sm-offset-2">
+            <div class="col-sm-8 col-sm-offset-2 hidden-sm hidden-xs">
                 <h1 class="text-white mt-100" style="margin-top: 28vh;">Foodtics is Here</h1>
                 <p class="text-white prev-text">Foodtics is here to help you eat and live healthy by letting you know when fresh foods are available and
                     allows you buy directly from the farmers</p>
@@ -305,7 +305,8 @@
                             localStorage.setItem('user_name', jsonStr.fullname);
                             localStorage.setItem('user_email', jsonStr.email);
 
-                            window.location = "https://joshuachinemezu.github.io/foodtics/analytics.html"
+                            window.location =
+                                "https://joshuachinemezu.github.io/foodtics/analytics.html"
 
                         } else {
                             toastr.warning("Invalid login details, Please try again");
