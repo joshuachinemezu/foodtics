@@ -86,8 +86,9 @@
 
                     if (jsonStr.code == 1) {
 
-                        toastr.success("Welcome " + jsonStr.fullname);
-                        document.getElementById("fullname").innerHTML = jsonStr.fullname
+                        // toastr.success("Welcome " + jsonStr.fullname);
+                        var username = localStorage.getItem('user_name');
+                        document.getElementById("fullname").innerHTML = username
 
 
                         // window.location =
