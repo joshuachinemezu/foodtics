@@ -13,6 +13,8 @@ class Cors
  public function __construct()
  {
   $this->CI = &get_instance();
+  $this->CI->load->helper('url');
+
 //   $this->CI->load->library('session');
  }
 
@@ -21,8 +23,11 @@ class Cors
  *
  * @return Response
  */
- public function accept()
+ public function accept($method)
  {
+  if ($_SERVER['REQUEST_METHOD'] != $method) {
+   return false;
+  }
   //http://stackoverflow.com/questions/18382740/cors-not-working-php
   if (isset($_SERVER['HTTP_ORIGIN'])) {
    header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
@@ -31,18 +36,18 @@ class Cors
   }
 
   // Access-Control headers are received during OPTIONS requests
-  if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+  // if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 
-   if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD'])) {
-    header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
-   }
-
-   if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS'])) {
-    header("Access-Control-Allow-Headers:        {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
-   }
-
-   exit(0);
+  if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD'])) {
+   header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
   }
+
+  if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS'])) {
+   header("Access-Control-Allow-Headers:        {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
+  }
+
+  exit(0);
+
  }
 
 }
