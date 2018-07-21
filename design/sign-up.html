@@ -19,6 +19,8 @@
     <link href="./assets/css/demo.css" rel="stylesheet" />
     <link href="./assets/css/custom.css" rel="stylesheet" />
     <link href="./assets/css/custom-two.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
+
 
 </head>
 
@@ -73,35 +75,35 @@
                         <div class="card-body">
                             <h3 class="m-0">Sign Up</h3>
                             <hr class="mb-4">
-                            <form>
+                            <form method="post" name="frmChange" onSubmit="return validateInput(event)">
                                 <div class="form-group label-floating">
                                     <label class="control-label text-bold">Full Name</label>
-                                    <input type="text" class="form-control sign-input" name="" id="">
+                                    <input type="text" class="form-control sign-input" name="fullname" required id="fullname">
                                 </div>
                                 <div class="form-group label-floating">
                                     <label class="control-label text-bold">Email Address</label>
-                                    <input type="email" class="form-control sign-input" name="" id="">
+                                    <input type="email" class="form-control sign-input" name="email" required id="email">
                                 </div>
                                 <div class="form-group label-floating mt-2">
                                     <label class="control-label text-bold">Sign up as</label>
                                     <div class="form-group">
-                                        <select class="custom-select btn-block" name="purpose" id="">
-                                            <option selected>Select one</option>
-                                            <option value="">User</option>
-                                            <option value="">Farmer</option>
+                                        <select class="custom-select btn-block" name="purpose" id="purpose">
+                                            <option value="" selected>Select one</option>
+                                            <option value="user">User</option>
+                                            <option value="farmer">Farmer</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group label-floating mt-2">
                                     <label class="control-label text-bold">Password</label>
-                                    <input type="password" class="form-control sign-input" name="" id="">
+                                    <input type="password" class="form-control sign-input" name="password" id="password">
                                 </div>
                                 <div class="form-group label-floating mt-2">
                                     <label class="control-label text-bold">Confirm Password</label>
-                                    <input type="password" class="form-control sign-input" name="" id="">
+                                    <input type="password" class="form-control sign-input" name="cpassword" id="cpassword">
                                 </div>
                                 <div class="form-group label-floating mt-2">
-                                    <button class="btn btn-next btn-fill btp btn-wd btn-green">Sign Up</button>
+                                    <button type="submit" class="btn btn-next btn-fill btp btn-wd btn-green">Sign Up</button>
                                 </div>
                             </form>
                             <p>Already have an Account?
@@ -157,19 +159,105 @@
 <script src="./assets/js/now-ui-kit.js?v=1.1.0" type="text/javascript"></script>
 
 <script src="./assets/js/script.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js" type="text/javascript"></script>
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        // the body of this function is in assets/js/now-ui-kit.js
-        nowuiKit.initSliders();
-    });
+<script>
+    const validateInput = e => {
+        e.preventDefault();
+        var fullname, email, purpose, password, confirmPassword, output = true;
+        fullname = document.frmChange.fullname;
+        email = document.frmChange.email;
+        purpose = document.frmChange.purpose;
+        password = document.frmChange.password;
+        confirmPassword = document.frmChange.cpassword;
 
-    function scrollToDownload() {
+        if (!fullname.value) {
+            fullname.focus();
+            document.getElementById("fullname").style.borderColor = "red";
+            output = false;
+        } else {
+            document.getElementById("fullname").style.borderColor = "";
+        }
 
-        if ($('.section-download').length != 0) {
-            $("html, body").animate({
-                scrollTop: $('.section-download').offset().top
-            }, 1000);
+        if (!email.value) {
+            email.focus();
+            document.getElementById("email").style.borderColor = "red";
+            output = false;
+        } else {
+            document.getElementById("email").style.borderColor = "";
+            output = true;
+        }
+
+        if (!purpose.value) {
+            purpose.focus();
+            document.getElementById("purpose").style.borderColor = "red";
+            output = false;
+        } else {
+            document.getElementById("purpose").style.borderColor = "";
+            output = true;
+        }
+
+        if (!password.value) {
+            password.focus();
+            document.getElementById("password").style.borderColor = "red";
+            output = false;
+        } else {
+            document.getElementById("password").style.borderColor = "";
+            output = true;
+        }
+
+        if (password.value != confirmPassword.value) {
+            password.value = "";
+            confirmPassword.value = "";
+            document.getElementById("password").style.borderColor = "red";
+            password.focus();
+            output = false;
+        } else {
+            document.getElementById("password").style.borderColor = "";
+        }
+
+        if (output == true) {
+            $.ajax({
+                url: "http://foodtics.local/register",
+                type: "POST",
+                data: {
+                    fullname: fullname.value,
+                    email: email.value,
+                    purpose: purpose.value,
+                    password: password.value
+                },
+                dataType: "JSON",
+                cache: false,
+                beforeSend: function () {
+                    // $("#" + id)
+                    //   .html("")
+                    //   .hide();
+                    // $("#loader_image").show();
+                },
+                success: function (jsonStr) {
+                    console.log(jsonStr)
+
+                    if (jsonStr.status == "error") {
+                        if (jsonStr.code == 0) {
+                            toastr.warning("Sorry fields cannot be null");
+                        } else if (jsonStr.code == 1) {
+                            toastr.warning("Sorry all fields must be filled");
+                        } else if (jsonStr.code == 2) {
+                            toastr.warning("Sorry email already exist");
+                            email.focus();
+                        } else {
+                            toastr.error("Error in operation, Please try again");
+                        }
+                    }
+                    if (jsonStr.status == "success") {
+                        if (jsonStr.code == 0) {
+                            toastr.success("Registration successful");
+                            window.location = "http://foodtics.design/login.html"
+                        }
+                    }
+                    // $("#result").text(JSON.stringify(jsonStr));
+                }
+            });
         }
     }
 </script>

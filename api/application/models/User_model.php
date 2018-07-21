@@ -1,5 +1,5 @@
 <?php
-class Sreq_model extends CI_Model
+class User_model extends CI_Model
 {
 
  public function __construct()
@@ -17,20 +17,20 @@ class Sreq_model extends CI_Model
 
   // Insert data for acccount table
   $account = array(
-   'account_fullname' => $fullname,
-   'account_email' => $email,
-   'account_password' => $password_hash,
+   'account_fullname'    => $fullname,
+   'account_email'       => $email,
+   'account_password'    => $password_hash,
    'account_phoneNumber' => $mobileNumber,
-   'account_hash' => $user_hash,
-   'account_type' => 'sreq',
+   'account_hash'        => $user_hash,
+   'account_type'        => 'sreq',
   );
 
   if ($this->db->insert('account', $account)) {
 
    $data = array(
-    'status_account_id' => $this->db->insert_id(),
+    'status_account_id'   => $this->db->insert_id(),
     'status_account_hash' => $user_hash,
-    'status_hash' => $status_hash,
+    'status_hash'         => $status_hash,
    );
 
    $sreq = array(
@@ -72,7 +72,7 @@ class Sreq_model extends CI_Model
  public function check_verify()
  {
   $user_id = $this->session->userdata('user_id');
-  $query = $this->db->get_where('verify', array('verify_user_id' => $user_id, 'verify_reject' => 0));
+  $query   = $this->db->get_where('verify', array('verify_user_id' => $user_id, 'verify_reject' => 0));
   return $query->result();
  }
 

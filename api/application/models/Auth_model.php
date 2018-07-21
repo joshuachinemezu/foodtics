@@ -7,6 +7,43 @@ class Auth_model extends CI_Model
   parent::__construct();
  }
 
+ public function register($fullname, $email, $purpose, $password, $user_hash)
+ {
+  // User data array
+  $options = [
+   'cost' => 8,
+  ];
+  $password_hash = password_hash($password, PASSWORD_BCRYPT, $options);
+
+  // Insert data for acccount table
+  $account = array(
+   'account_name'     => $fullname,
+   'account_email'    => $email,
+   'account_password' => $password_hash,
+   'account_hash'     => $user_hash,
+   'account_type'     => $purpose,
+  );
+
+  if ($this->db->insert('account', $account)) {
+   return true;
+  } else {
+   return false;
+   // redirect('users/user_reg/'.$this->session__get('type'));
+  }
+
+ }
+
+ // Check email exists
+ public function check_email_exists($email)
+ {
+  $query = $this->db->get_where('account', array('account_email' => $email));
+  if (empty($query->row_array())) {
+   return true;
+  } else {
+   return false;
+  }
+ }
+
  // Log user in
  public function login($user_email, $user_password)
  {
@@ -31,27 +68,6 @@ class Auth_model extends CI_Model
  }
 
  // Verify user
- public function verify($image)
- {
-
-  // Insert data for acccount table
-  $data = array(
-   'verify_user_id' => $this->session->userdata('user_id'),
-   'verify_img' => $image,
-   'verify_mode' => $this->input->post('mode'),
-  );
-  // Insert user
-  return $this->db->insert('verify', $data);
- }
-
- // Check whether user has uploaded and image or not uploaded a verify image
- public function check_verify()
- {
-  $user_id = $this->session->userdata('user_id');
-  $query = $this->db->get_where('verify', array('verify_user_id' => $user_id, 'verify_reject' => 0));
-  return $query->result();
- }
-
  // Read data from database to show data in admin page
  public function read_user_information($username)
  {
