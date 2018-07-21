@@ -69,12 +69,12 @@ class Auth_model extends CI_Model
 
  // Verify user
  // Read data from database to show data in admin page
- public function read_user_information($username)
+ public function getUserinfo($username)
  {
 
-  $condition = "user_name =" . "'" . $username . "'";
+  $condition = "account_hash =" . "'" . $username . "'";
   $this->db->select('*');
-  $this->db->from('user');
+  $this->db->from('account');
   $this->db->where($condition);
   $this->db->limit(1);
   $query = $this->db->get();

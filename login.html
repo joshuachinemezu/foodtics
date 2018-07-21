@@ -220,7 +220,8 @@
 
             $.ajax({
 
-                url: "https://foodtics.000webhostapp.com/login",
+                url: "http://foodtics.local/login",
+                // https://foodtics.000webhostapp.com/login
 
                 type: "POST",
 
@@ -300,9 +301,10 @@
                         if (jsonStr.code == 0) {
 
                             toastr.success("Login successful");
+                            localStorage.setItem('user_hash', jsonStr.user_hash);
 
-                            window.location =
-                                "https://joshuachinemezu.github.io/foodtics/analytics.html"
+                            // window.location =
+                            //     "https://joshuachinemezu.github.io/foodtics/analytics.html"
 
                         } else {
                             toastr.warning("Invalid login details, Please try again");
