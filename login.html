@@ -86,7 +86,14 @@
                                     </p>
                                 </div>
                                 <div class="form-group label-floating mt-2">
-                                    <button class="btn btn-next btn-fill btp btn-wd btn-green">Login</button>
+                                    <button class="btn btn-next btn-fill btp btn-wd btn-green disable-btn">
+                                        <div class="spinner">
+                                            <div class="bounce1"></div>
+                                            <div class="bounce2"></div>
+                                            <div class="bounce3"></div>
+                                        </div>
+                                        <span class="login-txt">Login</span>
+                                    </button>
                                 </div>
                             </form>
                             <p>Dont have have an Account?
@@ -151,7 +158,7 @@
 
 
 <script>
-
+    $(".spinner").hide();
     $(document).ready(function () {
 
         $("#loader").hide();
@@ -235,15 +242,32 @@
 
                     $("#loader").show();
 
-                    $("#btn").hide();
+                    $(".spinner").show();
+
+                    $(".login-txt").hide();
+
+                    $(".disable-btn").attr("disabled", "disabled");
+
+
+
+
+
+                    // $("#btn").hide();
 
                 },
 
                 success: function (jsonStr) {
 
-                    $("#loader").hide();
+                    // $("#loader").hide();
 
-                    $("#btn").show();
+                    // $("#btn").show();
+
+                    $(".disable-btn").removeAttr("disabled", "disabled");
+
+                    $(".login-txt").show();
+                    $(".spinner").hide();
+
+
 
 
 
@@ -277,7 +301,8 @@
 
                             toastr.success("Login successful");
 
-                            window.location = "https://joshuachinemezu.github.io/foodtics/analytics.html"
+                            window.location =
+                                "https://joshuachinemezu.github.io/foodtics/analytics.html"
 
                         } else {
                             toastr.warning("Invalid login details, Please try again");
@@ -294,5 +319,4 @@
         }
 
     }
-
 </script>
