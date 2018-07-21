@@ -1,0 +1,39 @@
+.no-shadow {
+	box-shadow: 0px 0px;
+}
+
+.grey-bg {
+	background-image: url('../img/gray_background.jpg') !important;
+	background-repeat: repeat;
+	background-color: transparent !important;
+}
+
+.my-navtab li {
+	width: 33.3333%;
+	/* position: absolute; */
+	text-align: center;
+	padding: 12px;
+	font-size: 12px;
+	text-transform: uppercase;
+	-webkit-font-smoothing: subpixel-antialiased;
+	background-color: #e8e8e8;
+	/* top: -5px; */
+	/* left: 0px; */
+	color: #FFFFFF;
+	cursor: pointer;
+	margin-top: -15px;
+	font-weight: 500;
+}
+
+.pay-input {
+	border: 1px solid #dedede;
+}
+
+.pay-sel {
+	border: 1px solid #dedede !important;
+	background-color: white;
+	border: 0px;
+	border-radius: 0px;
+	width: 353px !important;
+	height: 40px !important;
+}
