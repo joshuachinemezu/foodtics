@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="dashboard/assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="dashboard/assets/img/favicon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Foodtics</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport'
+    />
+    <!--     Fonts and icons     -->
+    <!-- <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" /> -->
+    <!-- <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet"> -->
+
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+        crossorigin="anonymous">
+    <!-- CSS Files -->
+    <link href="dashboard/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="dashboard/assets/css/now-ui-dashboard.css?v=1.0.1" rel="stylesheet" />
+
+    <link href="dashboard/assets/demo/demo.css" rel="stylesheet" />
+    <link href="dashboard/assets/custom.css" rel="stylesheet" />
+
+</head>
+
+<body class="">
+    <div class="wrapper ">
+        <div class="sidebar" data-color="orange">
+            <div class="logo">
+                <!-- <a href="#" class="simple-text logo-mini">
+                    <Fieldset:disabled></Fieldset:disabled>
+                </a> -->
+                <a href="#" class="simple-text logo-normal text-center">
+                    <img src="assets/img/Foodtics-white.svg" class="img-fluid" alt="" style="width: 123px;">
+                </a>
+            </div>
+            <div class="sidebar-wrapper">
+                <ul class="nav">
+                    <li class="active">
+                        <a href="analytics.html">
+                            <i class="now-ui-icons design_app"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="availabilty.html ">
+                            <i class="now-ui-icons ui-1_bell-53 "></i>
+                            <p>Food Availability</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="drivers.html ">
+                            <i class="now-ui-icons ui-1_bell-53 "></i>
+                            <p>Drivers</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="farmers.html">
+                            <i class="now-ui-icons ui-1_bell-53 "></i>
+                            <p>Farmers</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tips.html">
+                            <i class="now-ui-icons ui-1_bell-53 "></i>
+                            <p>Food Tips</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="nutritional.html">
+                            <i class="now-ui-icons ui-1_bell-53 "></i>
+                            <p>Nutritional Values</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="index.html">
+                            <i class="now-ui-icons ui-1_bell-53 "></i>
+                            <p>Log out</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="main-panel ">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute bg-primary fixed-top ">
+                <div class="container-fluid ">
+                    <div class="navbar-wrapper ">
+                        <div class="navbar-toggle ">
+                            <button type="button " class="navbar-toggler ">
+                                <span class="navbar-toggler-bar bar1 "></span>
+                                <span class="navbar-toggler-bar bar2 "></span>
+                                <span class="navbar-toggler-bar bar3 "></span>
+                            </button>
+                        </div>
+                        <a class="navbar-brand " href="#pablo ">Dashboard: Level of Food Availablity</a>
+                    </div>
+                    <button class="navbar-toggler " type="button " data-toggle="collapse " data-target="#navigation
+                                " aria-controls="navigation-index " aria-expanded="false " aria-label="Toggle navigation ">
+                        <span class="navbar-toggler-bar navbar-kebab "></span>
+                        <span class="navbar-toggler-bar navbar-kebab "></span>
+                        <span class="navbar-toggler-bar navbar-kebab "></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-end " id="navigation ">
+                        <form>
+                            <div class="input-group no-border">
+                                <!-- <label for="">Hello</label> -->
+                                <select class="form-control" name="" id="" style="width: 180px;">
+                                    <option>Maize Crop</option>
+                                    <option>Legumes</option>
+                                    <option>Yam</option>
+                                </select>
+                            </div>
+                            <!-- <div class="input-group no-border ">
+                                <input type="text " value="Maize Crop" class="form-control " placeholder="Search... ">
+                                <span class="input-group-addon ">
+                                    <i class="now-ui-icons ui-1_zoom-bold "></i>
+                                </span>
+                            </div> -->
+                        </form>
+                        <ul class="navbar-nav ">
+                            <li class="nav-item ">
+                                <a class="nav-link " href="#pablo ">
+                                    <i class="now-ui-icons users_single-02 "></i>
+                                    <p>
+                                        <span class="d-lg-none d-md-block ">Account</span>
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- End Navbar -->
+            <div class="panel-header panel-header-lg">
+                <canvas id="bigDashboardChart"></canvas>
+            </div>
+            <div class="content ">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card card-stats">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="statistics">
+                                            <div class="info text-center">
+                                                <img src="Dashboard/assets/img/farmer.svg" class="img-fluid widget-img" alt="">
+                                                <h6 class="stats-title">Farmers
+                                                    <span class="info-title">22</span>
+                                                </h6>
+                                                <!-- <h6 class="stats-title">Farmers</h6> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="statistics">
+                                            <div class="info text-center">
+                                                <img src="Dashboard/assets/img/truck.svg" class="img-fluid widget-img" widget-img alt="">
+                                                <h6 class="stats-title">Drivers
+                                                    <span class="info-title">23</span>
+                                                </h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="statistics">
+                                            <div class="info text-center">
+                                                <img src="Dashboard/assets/img/search.svg" class="img-fluid widget-img" alt="">
+                                                <h6 class="stats-title">Searches
+                                                    <span class="info-title">112</span>
+                                                </h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="statistics">
+                                            <div class="info text-center">
+                                                <img src="Dashboard/assets/img/farmer.svg" class="img-fluid widget-img" alt="">
+                                                <h6 class="stats-title">Support Requests
+                                                    <span class="info-title">27</span>
+                                                </h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card card-stats bg-yellow">
+                            <div class="card-body text-center">
+                                <p class="text-white">Buy fresh produces straight from farmers
+                                </p>
+                                <a class="btn btn-white" href="farmers.html" role="button">Find Farmers</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card card-stats bg-green">
+                            <div class="card-body text-center">
+                                <p class="text-white">Find Truck Drivers to pick up goods from the farm
+                                </p>
+                                <a class="btn btn-white" href="drivers.html" role="button">Find Drivers</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card card-stats bg-grey">
+                            <div class="card-body text-center">
+                                <p class="text-white">Know more about the food crops and their nutritional value
+                                </p>
+                                <a class="btn btn-white" href="#" role="button">Search</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="">
+                    <div class="card card-stats">
+                        <div class="card-body">
+                            <h3>Daily Tips</h3>
+                            <div class="media">
+                                <a class="pull-left" href="#">
+                                    <img class="media-object" src="assets/img/bg-fruit.jpg" alt="Image" class="img-fluid" style="width: 176px;">
+                                </a>
+                                <div class="media-body">
+                                    <div>
+                                        <h4 class="media-heading tip-head">Eat the right amount of calories
+                                        </h4>
+                                        <p style="margin-left: 10px;">Eat the right amount of calories for how active you are, so that you balance the
+                                            energy you consume with the energy you use. If you eat or drink too much, you'll
+                                            put on weight. If you eat and drink too little, you'll lose weight. </p>
+                                        <a href="single-tip.html" style="color: #0e7935; margin-left: 12px;">Read More</a>
+                                        <a class="pull-right" href="tips.html" style="color: #0e7935; margin-left: 12px; font-weight: bold;">See More</a>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="footer ">
+                <div class="container-fluid ">
+                    <nav>
+                        <ul>
+                            <li>
+                                <a href="index.html ">
+                                    Foodtics
+                                </a>
+                            </li>
+                            <li>
+                                <a href="# ">
+                                    About Us
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="copyright ">
+                        &copy;
+                        <script>
+                            document.write(new Date().getFullYear())
+                        </script>
+                        <a href="#" target="_blank ">Foodtics</a>. Coded by
+                        <a href="# " target="_blank ">Exolve Team</a>.
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+</body>
+<!--   Core JS Files   -->
+<script src="dashboard/assets/js/core/jquery.min.js "></script>
+<script src="dashboard/assets/js/core/popper.min.js "></script>
+<script src="dashboard/assets/js/core/bootstrap.min.js "></script>
+<script src="dashboard/assets/js/plugins/perfect-scrollbar.jquery.min.js "></script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE "></script>
+<script src="dashboard/assets/js/plugins/chartjs.min.js "></script>
+<script src="dashboard/assets/js/plugins/bootstrap-notify.js "></script>
+<script src="dashboard/assets/js/now-ui-dashboard.js?v=1.0.1 "></script>
+<script src="dashboard/assets/demo/demo.js "></script>
+<script>
+    $(document).ready(function () {
+        // Javascript method's body can be found in assets/js/demos.js
+        demo.initDashboardPageCharts();
+    });
+</script>
+
+</html>
