@@ -105,8 +105,9 @@ class Auth extends CI_Controller
     // $this->session->set_userdata($user_data);
 
     $res = array(
-     'status' => 'success',
-     'code'   => 0,
+     'user_hash' => $user_id[0]->account_hash,
+     'status'    => 'success',
+     'code'      => 0,
     );
     echo json_encode($res);exit;
    } else {
@@ -121,9 +122,17 @@ class Auth extends CI_Controller
 
  }
 
- public function getUserBio($accountHash)
+ public function getUserinfo()
  {
-  $user_info = $this->auth_model->login($accountHash);
+  $method = $this->cors->accept();
+
+  $userHash = $_POST['userHash'];
+
+//   echo json_encode($userHash);exit;
+
+  $user_info = $this->auth_model->getUserinfo($userHash);
+
+  echo json_encode($user_info);exit;
 
  }
 
