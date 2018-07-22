@@ -21,67 +21,19 @@
 
     <link href="dashboard/demo/demo.css" rel="stylesheet" />
     <link href="dashboard/custom.css" rel="stylesheet" />
+    <script src="dashboard/js/core/jquery.min.js "></script>
+
+    <script>
+        $(function () {
+            $("#sidebar-component").load("sidebar-component.html");
+        });
+    </script>
 
 </head>
 
 <body class="">
     <div class="wrapper ">
-        <div class="sidebar" data-color="orange">
-            <div class="logo">
-                <!-- <a href="#" class="simple-text logo-mini">
-                    <Fieldset:disabled></Fieldset:disabled>
-                </a> -->
-                <a href="#" class="simple-text logo-normal text-center">
-                    <img src="dashboard/img/Foodtics-white.svg" class="img-fluid" alt="" style="width: 123px;">
-                </a>
-            </div>
-            <div class="sidebar-wrapper">
-                <ul class="nav">
-                    <li>
-                        <a href="analytics.html">
-                            <i class="now-ui-icons design_app"></i>
-                            <p>Dashboard</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="availabilty.html ">
-                            <i class="now-ui-icons ui-1_bell-53 "></i>
-                            <p>Food Availability</p>
-                        </a>
-                    </li>
-                    <li class="active">
-                        <a href="drivers.html ">
-                            <i class="now-ui-icons ui-1_bell-53 "></i>
-                            <p>Drivers</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="farmers.html">
-                            <i class="now-ui-icons ui-1_bell-53 "></i>
-                            <p>Farmers</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="tips.html">
-                            <i class="now-ui-icons ui-1_bell-53 "></i>
-                            <p>Food Tips</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="nutritional.html">
-                            <i class="now-ui-icons ui-1_bell-53 "></i>
-                            <p>Nutritional Values</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="index.html">
-                            <i class="now-ui-icons ui-1_bell-53 "></i>
-                            <p>Log out</p>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+        <div id="sidebar-component"></div>
         <div class="main-panel ">
             <div class="topy-bar text-right">
                 <i class="now-ui-icons users_single-02 "></i>
@@ -192,8 +144,8 @@
         </div>
     </div>
 </body>
-<!--   Core JS Files   -->
-<script src="dashboard/js/core/jquery.min.js "></script>
+
+<!-- <script src="dashboard/js/core/jquery.min.js "></script>-->
 <script src="dashboard/js/core/popper.min.js "></script>
 <script src="dashboard/js/core/bootstrap.min.js "></script>
 <script src="dashboard/js/plugins/perfect-scrollbar.jquery.min.js "></script>
