@@ -30,8 +30,10 @@ Foodtics is an agric-tech platform that is focused on solving food shortage in o
 
 ## Origin
 
-The birth of this great project was the birth of awesome designers/developers
+The birth of this great project was the collaboration of awesome designers/developers by using @github and @figma
 
 Joshua Chinemezu joshuachinemezu@gmail.com https://github.com/joshuachinemezu Developer
+
 Adeniran Opeyemi adeniran1059@gmail.com https://github.com/Horpey UI/UX Designer
+
 Sojirin Seyikemi Ssojirin@gmail.com https://github.com/seyikemi Designer
