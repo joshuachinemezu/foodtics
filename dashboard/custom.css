@@ -26,6 +26,7 @@ h6,
 
 .sidebar[data-color="orange"] .nav li.active>a {
     color: #0e7935 !important;
+    background-color: #ffb900;
 }
 
 .sidebar .logo:after,
@@ -161,4 +162,15 @@ h6,
 
 .sidebar .sidebar-wrapper {
     padding-bottom: 62px !important;
+}
+
+.sidebar .nav img {
+    font-size: 20px;
+    float: left;
+    margin-right: 12px;
+    line-height: 30px;
+    width: 27px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5);
+    position: relative;
 }
