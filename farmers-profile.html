@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="dashboard/assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="dashboard/assets/img/favicon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Foodtics</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport'
+    />
+    <!--     Fonts and icons     -->
+    <!-- <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" /> -->
+    <!-- <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet"> -->
+
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+        crossorigin="anonymous">
+    <!-- CSS Files -->
+    <link href="dashboard/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="dashboard/css/now-ui-dashboard.css?v=1.0.1" rel="stylesheet" />
+
+    <link href="dashboard/demo/demo.css" rel="stylesheet" />
+    <link href="dashboard/custom.css" rel="stylesheet" />
+    <script src="dashboard/js/core/jquery.min.js "></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+        crossorigin="" />
+
+    <link href="assets/img/my-icon.png" rel="shortcut icon">
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#0e7935">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#0e7935">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="#0e7935">
+    <style>
+        #mapid {
+            height: 300px;
+        }
+    </style>
+
+    <script>
+        $(function () {
+            $("#sidebar-component").load("sidebar-component.html");
+        });
+    </script>
+
+</head>
+
+<body class="">
+    <script>
+        var cat = localStorage.getItem("user_hash");
+        var name = localStorage.getItem("user_name");
+        var email = localStorage.getItem("user_email");
+
+        $.ajax({
+
+
+            // http://foodtics.local/getUserinfo
+
+            type: "POST",
+
+            url: "https://foodtics.000webhostapp.com/getUserinfo",
+            data: {
+                userHash: cat
+            },
+
+            // data: {
+            //     userHash: cat
+            // },
+            // headers: { "app_id": "axXfI1j48srWNf4lrX6f", "app_code": "u_k-IvJxGiY0Kwgx0zxUuw" },
+
+            dataType: "json",
+
+            cache: false,
+            // url: moveto,
+
+
+            beforeSend: function () {
+                // $(".spinner").show();
+            },
+
+            success: function (jsonStr) {
+                $(".spinner").hide();
+
+
+                document.getElementById("userProfile").style.display = "block"
+                document.getElementById('name').innerHTML = name
+                document.getElementById('email').innerHTML = email
+                // document.getElementById('helpId').innerHTML = jsonStr.name
+                // document.getElementById('namey').innerHTML = jsonStr.name
+                // var namey = jsonStr.name
+
+
+                // $("#btn").show();
+                // console.log(jsonStr);
+                // lat = jsonStr.location.position[0]
+                // long = jsonStr.location.position[1]
+
+
+                var namey = jsonStr.name
+                // console.log(lat)
+                try {
+                    if (typeof (jsonStr.contacts.phone) != undefined) {
+                        document.getElementById('mobileno').innerHTML = jsonStr.contacts.phone[0].value
+                    }
+                } catch (e) {
+                    if (e.name == "ReferenceError") {
+
+                    }
+                }
+
+                // document.getElementById('location').innerHTML = jsonStr.location.address.city
+                // document.getElementById('address').innerHTML = jsonStr.location.address.street
+                // document.getElementById('pfImg').style.backgroundImage = jsonStr.icon
+
+                var src1 = jsonStr.icon
+                $("#pfImg").attr("src", src1);
+
+                // console.log(jsonStr.icon)
+
+
+
+
+                if (jsonStr.status == "error") {
+                    if (jsonStr.code == 0) {
+                        toastr.warning("Sorry fields cannot be null");
+                    } else {
+                        toastr.error("Error in operation, Please try again");
+                    }
+                }
+
+                if (jsonStr.status == "success") {
+                    if (jsonStr.code == 1) {
+
+                        // toastr.success("Welcome " + jsonStr.fullname);
+                        var username = localStorage.getItem("user_name");
+                        document.getElementById("fullname").innerHTML = username;
+
+                        // window.location =
+                        //     "https://joshuachinemezu.github.io/foodtics/analytics.html"
+                    } else {
+                        toastr.warning("Invalid login details, Please try again");
+                    }
+                }
+
+                // $("#result").text(JSON.stringify(jsonStr));
+            }
+        });
+    </script>
+
+    <div class="wrapper ">
+        <div id="sidebar-component"></div>
+        <div class="main-panel ">
+            <div class="topy-bar text-right">
+                <div class="navbar navbar-n">
+                    <div class="navbar-wrapper " style="display: block; width: 100%;">
+                        <div class="navbar-toggle ">
+                            <button type="button " class="navbar-toggler " style=" float: left;">
+                                <span class="navbar-toggler-bar bar1 "></span>
+                                <span class="navbar-toggler-bar bar2 "></span>
+                                <span class="navbar-toggler-bar bar3 "></span>
+                            </button>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                            </div>
+                            <div class="col-md-6">
+                                <div class="float-right">
+                                    <i class="now-ui-icons users_single-02 ">
+                                    </i>
+                                    Hello, Adeniran Opeyemi
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="content " style="margin-top: 17px;">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card card-stats">
+
+                            <div class="spinner">
+                                <div class="bounce1"></div>
+                                <div class="bounce2"></div>
+                                <div class="bounce3"></div>
+                            </div>
+                            <div class="card-body" id="userProfile">
+                                <h4 style="display: inline;" id="helpId">Profile</h4>
+                                <a class="btn bg-green text-white pull-right" href="avail-single.html" role="button">Go Back</a>
+                                <hr>
+                                <script>
+                                    document.getElementById("userProfile").style.display = "none"
+                                </script>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div class="profile-preview mb-80" style="background-image: url('dashboard/img/profile.png'); margin-bottom: 30px;" id="pf_img"></div>
+
+                                        <!-- <img src="dashboard/img/profile-img.png" class="img-fluid" style="width: 106px;"> -->
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="">
+                                            <div class="form-group">
+                                                <label class="dispp-label" for="">Name:</label>
+                                                <span class="dispp" id="name" class="" id="name"></span>
+                                                <br>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="dispp-label" for="">Location:</label>
+                                                <span class="dispp" id="location" class="">Lagos</span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="dispp-label" for="">Address:</label>
+                                                <span class="dispp" id="location" class="">7, Olufemi Street, off Nathan</span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="dispp-label" for="">Email:</label>
+                                                <span class="dispp" id="email" class=""></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="dispp-label" for="">Phone:</label>
+                                                <!-- <span class="dispp" id="mobileno" class="">+23452738998 </span> -->
+                                            </div>
+                                            <!-- <div class="form-group">
+                                                <label class="dispp-label" for="">Other Products:</label>
+                                                <span class="dispp" id="helpId" class=""> Cereals, Legumes</span>
+                                            </div> -->
+                                            <!-- <a class="btn bg-green text-white" href="edit-profile.html" role="button">Edit Profile</a> -->
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+
+                                        <!-- <div id="mapid"></div> -->
+                                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.5809231655444!2d3.4796057141824375!3d6.447814625828878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103bf437bd8d3729%3A0x5acd8f187000b764!2sFarm+City+Lekki!5e0!3m2!1sen!2sng!4v1532262373639"
+                                            height="450" frameborder="0" style="border:0" allowfullscreen style="width: 100%;"></iframe>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class=" footer ">
+                <div class="container-fluid ">
+                    <nav>
+                        <ul>
+                            <li>
+                                <a href="index.html ">
+                                    Foodtics
+                                </a>
+                            </li>
+                            <li>
+                                <a href="# ">
+                                    About Us
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="copyright ">
+                        &copy;
+                        <script>
+                            document.write(new Date().getFullYear())
+                        </script>
+                        <a href="# " target="_blank ">Foodtics</a>. Coded by
+                        <a href="# " target="_blank ">Exolve Team</a>.
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+</body>
+<!--   Core JS Files   -->
+<script src="dashboard/js/core/jquery.min.js "></script>
+<script src="dashboard/js/core/popper.min.js "></script>
+<script src="dashboard/js/core/bootstrap.min.js "></script>
+<script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js" integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
+    crossorigin=""></script>
+<script src="dashboard/js/plugins/perfect-scrollbar.jquery.min.js "></script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE "></script>
+<script src="dashboard/js/plugins/chartjs.min.js "></script>
+<script src="dashboard/js/plugins/bootstrap-notify.js "></script>
+<script src="dashboard/js/now-ui-dashboard.js?v=1.0.1 "></script>
+<script src="dashboard/demo/demo.js "></script>
+<!-- <script language=javascript src='http://maps.google.com/maps/api/js?sensor=false'></script> -->
+<script>
+    // console.log(lat)
+
+    var map = L.map('mapid').setView([6.4991, 3.3779], 15);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    L.marker([6.4991, 3.3779]).addTo(map)
+        .bindPopup("Alagomeji")
+        .openPopup();
+
+    // $(document).ready(function () {
+    //     var myLatlng = new google.maps.LatLng(-25.363882, 131.044922);
+    //     var myOptions = {
+    //         zoom: 4,
+    //         center: myLatlng,
+    //         mapTypeId: google.maps.MapTypeId.ROADMAP
+    //     }
+    //     map = new google.maps.Map($('#map'), myOptions);
+    //     var marker = new google.maps.Marker({
+    //         position: myLatlng,
+    //         map: map,
+    //         title: "Fast marker"
+    //     });
+    // })
+</script>
+
+
+</html>
