@@ -45,8 +45,8 @@
                     <p>Requests</p>
                 </a>
             </li>
-            <li>
-                <a href="index.html">
+            <li onclick="logout()">
+                <a href="">
                     <i class="now-ui-icons ui-1_bell-53 "></i>
                     <p>Log out</p>
                 </a>
@@ -54,3 +54,12 @@
         </ul>
     </div>
 </div>
+
+<script>
+    const logout = () => {
+        localStorage.removeItem('user_hash');
+        localStorage.removeItem('user_email');
+        localStorage.removeItem('user_name');
+        window.location = "https://joshuachinemezu.github.io/foodtics/login.html"
+    }
+</script>
