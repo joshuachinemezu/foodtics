@@ -98,8 +98,9 @@
                                 <div class="row">
                                     <div class="col-md-5">
                                         <div class="form-group label-floating">
-                                            <select class="form-control sign-input" name="">
+                                            <select class="form-control sign-input" name="" onchange="warningaa(this);">
                                                 <option selected>Select Food Crop</option>
+                                                <option>All Food</option>
                                                 <option>Maize Crop</option>
                                                 <option value="leg">Legumes</option>
                                                 <option>Yam</option>
@@ -127,7 +128,7 @@
                                     </div>
                                 </div>
                                 <!-- <a href="order-driver.html" class=" pull-right btn">Make new Request</a> -->
-                                <div class="table-responsive">
+                                <div class="table-responsive" id="farmers">
                                     <table class="table table-hover">
                                         <thead class="">
 
@@ -136,48 +137,26 @@
                                                     Name
                                                 </th>
                                                 <th>
-                                                    Location
+                                                    Address
 
                                                 </th>
 
                                                 <th>
 
-                                                    Address
+                                                    Distance Away
+
+                                                </th>
+                                                <th>
+
+                                                    Action
 
                                                 </th>
 
 
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <a href="farmers-profile.html" class="text-green">
-                                                        Tha-Farms
-                                                    </a>
+                                        <tbody id="tablee">
 
-                                                </td>
-                                                <td>
-                                                    Lagos
-                                                </td>
-                                                <td>
-
-                                                    23, Herbert Macaulay, Lagos
-
-                                                </td>
-                                                <!-- <td>
-                                                    <div class="dropdown">
-                                                        <a href="#pablo" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="navbarDropdownMenuLink1">
-                                                            Manage
-                                                        </a>
-                                                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
-                                                            <a class="dropdown-item" href="#">Accept</a>
-                                                            <a class="dropdown-item" href="#">Reject</a>
-                                                        </ul>
-                                                    </div>
-
-                                                </td> -->
-                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -228,10 +207,85 @@
 <script src="dashboard/js/now-ui-dashboard.js?v=1.0.1 "></script>
 <script src="dashboard/demo/demo.js "></script>
 <script>
-    $(document).ready(function () {
-        // Javascript method's body can be found in assets/js/demos.js
-        demo.initDashboardPageCharts();
-    });
+
+    document.getElementById("farmers").style.display = "none";
+    const gothere = (url) => {
+        window.location = 'http://foodtics.design/farmers.html?q=' + url;
+    }
+
+    function warningaa(obj) {
+        // obj.value == "leg"
+        if (obj != "") {
+            $.ajax({
+                url: "https://places.cit.api.here.com/places/v1/autosuggest%20?at=6.4433644,3.4467792999999998&q=farms%20&app_id=axXfI1j48srWNf4lrX6f&app_code=u_k-IvJxGiY0Kwgx0zxUuw",
+                // http://foodtics.local/getUserinfo
+
+                type: "GET",
+
+                // data: {
+                //     userHash: cat
+                // },
+
+                dataType: "JSON",
+
+                cache: false,
+
+                beforeSend: function () {
+                    // $("#btn").hide();
+                },
+
+                success: function (jsonStr) {
+                    // $("#loader").hide();
+
+                    // $("#btn").show();
+                    $("#farmers").slideDown();
+                    console.log(jsonStr.results)
+                    html = '';
+
+                    for (var i = 0; i < jsonStr.results[i].title.length; i++) {
+                        html += '<tr>';
+                        html += '<td>' + jsonStr.results[i].title + '</td>';
+                        html += '<td>' + jsonStr.results[i].vicinity + '</td>';
+                        html += '<td>' + jsonStr.results[i].distance + '</td>';
+                        url = "'" + jsonStr.results[i].href + "'";
+                        html += '<td><button onclick=' + '"gothere(' + url + ')" class="btn bg-green text-white btn-sm"> View More</button></td>';
+                        html += '</tr>';
+
+                    }
+
+
+                    $('#tablee').html(html);
+
+                    if (jsonStr.status == "error") {
+                        if (jsonStr.code == 0) {
+                            toastr.warning("Sorry fields cannot be null");
+                        } else {
+                            toastr.error("Error in operation, Please try again");
+                        }
+                    }
+
+                    if (jsonStr.status == "success") {
+                        if (jsonStr.code == 1) {
+                            // toastr.success("Welcome " + jsonStr.fullname);
+                            var username = localStorage.getItem("user_name");
+                            document.getElementById("fullname").innerHTML = username;
+
+                            // window.location =
+                            //     "https://joshuachinemezu.github.io/foodtics/analytics.html"
+                        } else {
+                            toastr.warning("Invalid login details, Please try again");
+                        }
+                    }
+
+                    // $("#result").text(JSON.stringify(jsonStr));
+                }
+            });
+
+
+
+            // document.getElementById("farmers").style.display = "block";
+        }
+    }
 </script>
 
 </html>
