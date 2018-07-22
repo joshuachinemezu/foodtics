@@ -22,6 +22,13 @@
     <link href="dashboard/demo/demo.css" rel="stylesheet" />
     <link href="dashboard/custom.css" rel="stylesheet" />
     <script src="dashboard/js/core/jquery.min.js "></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+        crossorigin="" />
+    <style>
+        #mapid {
+            height: 300px;
+        }
+    </style>
 
     <script> 
         $(function () {
@@ -42,7 +49,15 @@
             if (!results[2]) return '';
             return decodeURIComponent(results[2].replace(/\+/g, ' '));
         }
+        function getURLParameter(name) {
+            return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+        }
         var theparam = getParameterByName('q');
+        lat = getURLParameter('lat');
+        long = getURLParameter('long');
+        name = getURLParameter('name');
+        showName = name
+
         // var newSrc = 'axXfI1j48srWNf4lrX6f';
         // var app_id = theparam.replace(/(app_id=).*?(&)/, newSrc + '$1');
 
@@ -50,7 +65,7 @@
 
         // var new_code = 'u_k-IvJxGiY0Kwgx0zxUuw';
         // var app_code = theparam.replace(/(app_code=).*?(&)/, '$1' + new_code);
-        console.log(theparam)
+        console.log(long)
 
         $.ajax({
             xhrFields: {
@@ -82,10 +97,14 @@
                 $("#spinner").hide();
 
                 // $("#btn").show();
-                console.log(jsonStr);
-
+                // console.log(jsonStr);
+                // lat = jsonStr.location.position[0]
+                // long = jsonStr.location.position[1]
 
                 document.getElementById('helpId').innerHTML = jsonStr.name
+                document.getElementById('namey').innerHTML = jsonStr.name
+                var namey = jsonStr.name
+                console.log(lat)
                 try {
                     if (typeof (jsonStr.contacts.phone) != undefined) {
                         document.getElementById('mobileno').innerHTML = jsonStr.contacts.phone[0].value
@@ -99,10 +118,12 @@
 
                 document.getElementById('location').innerHTML = jsonStr.location.address.city
                 document.getElementById('address').innerHTML = jsonStr.location.address.street
-                document.getElementById('pf_img').style.backgroundImage = jsonStr.location.icon
+                // document.getElementById('pfImg').style.backgroundImage = jsonStr.icon
 
-                var src1 = jsonStr.location.icon
+                var src1 = jsonStr.icon
                 $("#pfImg").attr("src", src1);
+
+                // console.log(jsonStr.icon)
 
 
 
@@ -147,20 +168,20 @@
                     <div class="col-md-12">
                         <div class="card card-stats">
                             <div class="card-body">
-                                <h4 style="display: inline;">Tha Farm</h4>
+                                <h4 style="display: inline;" id="helpId"></h4>
                                 <a class="btn bg-green text-white pull-right" href="farmers.html" role="button">Go Back</a>
                                 <hr>
                                 <div class="row">
-                                    <div class="col-md-2">
+                                    <div class="col-md-1">
                                         <!-- <div class="profile-preview mb-80" style="background-image: url('Dashboard/img/profile.png'); margin-bottom: 30px;" id="pf_img">
                                         </div> -->
-                                        <img src="" id="pfImg" />
+                                        <img src="" id="pfImg" class="img-fluid" style="width: 106px;" />
                                     </div>
-                                    <div class="col-md-5">
+                                    <div class="col-md-4">
                                         <div class="">
                                             <div class="form-group">
                                                 <label class="dispp-label" for="">Name:</label>
-                                                <span class="dispp" id="helpId" class=""></span>
+                                                <span class="dispp" id="namey" class=""></span>
                                                 <br>
                                             </div>
 
@@ -183,9 +204,9 @@
                                             <a class="btn bg-green text-white" href="#" role="button">Contact</a>
                                         </div>
                                     </div>
-                                    <div class="col-md-5">
-                                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15858.4393673584!2d3.4360414!3d6.4441155!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103bf5020c9e081d%3A0x7c6b197c6b2cf36a!2sLekki+Farm!5e0!3m2!1sen!2sng!4v1532215015917"
-                                            frameborder="0" style="border:0 ;width: 100%; height: 400px;" allowfullscreen></iframe>
+                                    <div class="col-md-7">
+
+                                        <div id="mapid"></div>
                                     </div>
                                 </div>
 
@@ -228,6 +249,8 @@
 <script src="dashboard/js/core/jquery.min.js "></script>
 <script src="dashboard/js/core/popper.min.js "></script>
 <script src="dashboard/js/core/bootstrap.min.js "></script>
+<script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js" integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
+    crossorigin=""></script>
 <script src="dashboard/js/plugins/perfect-scrollbar.jquery.min.js "></script>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE "></script>
@@ -235,23 +258,34 @@
 <script src="dashboard/js/plugins/bootstrap-notify.js "></script>
 <script src="dashboard/js/now-ui-dashboard.js?v=1.0.1 "></script>
 <script src="dashboard/demo/demo.js "></script>
-<script language=javascript src='http://maps.google.com/maps/api/js?sensor=false'></script>
+<!-- <script language=javascript src='http://maps.google.com/maps/api/js?sensor=false'></script> -->
 <script>
+    // console.log(lat)
 
-    $(document).ready(function () {
-        var myLatlng = new google.maps.LatLng(-25.363882, 131.044922);
-        var myOptions = {
-            zoom: 4,
-            center: myLatlng,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        }
-        map = new google.maps.Map($('#map'), myOptions);
-        var marker = new google.maps.Marker({
-            position: myLatlng,
-            map: map,
-            title: "Fast marker"
-        });
-    })
+    var map = L.map('mapid').setView([lat, long], 15);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    L.marker([lat, long]).addTo(map)
+        .bindPopup(showName)
+        .openPopup();
+
+    // $(document).ready(function () {
+    //     var myLatlng = new google.maps.LatLng(-25.363882, 131.044922);
+    //     var myOptions = {
+    //         zoom: 4,
+    //         center: myLatlng,
+    //         mapTypeId: google.maps.MapTypeId.ROADMAP
+    //     }
+    //     map = new google.maps.Map($('#map'), myOptions);
+    //     var marker = new google.maps.Marker({
+    //         position: myLatlng,
+    //         map: map,
+    //         title: "Fast marker"
+    //     });
+    // })
 </script>
 
 

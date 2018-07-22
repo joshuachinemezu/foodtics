@@ -180,8 +180,8 @@
     $(".spinner").hide();
 
     document.getElementById("farmers").style.display = "none";
-    const gothere = (url) => {
-        window.location = 'https://joshuachinemezu.github.io/foodtics/farmer-single.html?q=' + url;
+    const gothere = (url, lat, long, name) => {
+        window.location = 'https://joshuachinemezu.github.io/foodtics/farmer-single.html?q=' + url + '&lat=' + lat + '&long=' + long + '&name=' + name;
     }
 
     function warningaa(obj) {
@@ -220,7 +220,10 @@
                         html += '<td>' + jsonStr.results[i].vicinity + '</td>';
                         html += '<td>' + jsonStr.results[i].distance / 1000 + 'km</td>';
                         url = "'" + jsonStr.results[i].href + "'";
-                        html += '<td><button onclick=' + '"gothere(' + url + ')" class="btn bg-green text-white btn-sm"> View More</button></td>';
+                        lat = "'" + jsonStr.results[i].position[0] + "'";
+                        long = "'" + jsonStr.results[i].position[1] + "'";
+                        name = "'" + jsonStr.results[i].title + "'";
+                        html += '<td><button onclick=' + '"gothere(' + url + ',' + lat + ',' + long + ',' + name + ')" class="btn bg-green text-white btn-sm"> View More</button></td>';
                         html += '</tr>';
 
                     }
