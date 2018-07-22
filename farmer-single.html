@@ -19,6 +19,14 @@
     <link href="dashboard/css/bootstrap.min.css" rel="stylesheet" />
     <link href="dashboard/css/now-ui-dashboard.css?v=1.0.1" rel="stylesheet" />
 
+    <link href="assets/img/my-icon.png" rel="shortcut icon">
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#0e7935">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#0e7935">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="#0e7935">
+
     <link href="dashboard/demo/demo.css" rel="stylesheet" />
     <link href="dashboard/custom.css" rel="stylesheet" />
     <script src="dashboard/js/core/jquery.min.js "></script>
@@ -30,7 +38,7 @@
         }
     </style>
 
-    <script> 
+    <script>
         $(function () {
             $("#sidebar-component").load("sidebar-component.html");
         });
@@ -49,8 +57,10 @@
             if (!results[2]) return '';
             return decodeURIComponent(results[2].replace(/\+/g, ' '));
         }
+
         function getURLParameter(name) {
-            return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+            return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) ||
+                [null, ''])[1].replace(/\+/g, '%20')) || null;
         }
         var theparam = getParameterByName('q');
         lat = getURLParameter('lat');
@@ -109,8 +119,7 @@
                     if (typeof (jsonStr.contacts.phone) != undefined) {
                         document.getElementById('mobileno').innerHTML = jsonStr.contacts.phone[0].value
                     }
-                }
-                catch (e) {
+                } catch (e) {
                     if (e.name == "ReferenceError") {
 
                     }
