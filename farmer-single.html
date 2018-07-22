@@ -101,6 +101,9 @@
                 document.getElementById('address').innerHTML = jsonStr.location.address.street
                 document.getElementById('pf_img').style.backgroundImage = jsonStr.location.icon
 
+                var src1 = jsonStr.location.icon
+                $("#pfImg").attr("src", src1);
+
 
 
 
@@ -149,8 +152,9 @@
                                 <hr>
                                 <div class="row">
                                     <div class="col-md-2">
-                                        <div class="profile-preview mb-80" style="background-image: url('Dashboard/img/profile.png'); margin-bottom: 30px;" id="pf_img">
-                                        </div>
+                                        <!-- <div class="profile-preview mb-80" style="background-image: url('Dashboard/img/profile.png'); margin-bottom: 30px;" id="pf_img">
+                                        </div> -->
+                                        <img src="" id="pfImg" />
                                     </div>
                                     <div class="col-md-5">
                                         <div class="">
@@ -247,7 +251,7 @@
             map: map,
             title: "Fast marker"
         });
-    } 
+    })
 </script>
 
 
