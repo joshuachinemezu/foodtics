@@ -174,3 +174,12 @@ h6,
     color: rgba(255, 255, 255, 0.5);
     position: relative;
 }
+
+.navbar .navbar-toggler-bar {
+    background: black;
+}
+
+.navbar-n {
+    box-shadow: 0px 0px;
+    margin-bottom: 0px;
+}
