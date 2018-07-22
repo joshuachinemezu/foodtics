@@ -7,30 +7,84 @@
             <img src="dashboard/img/Foodtics-white.svg" class="img-fluid" alt="" style="width: 123px;">
         </a>
     </div>
+    <script>
+        var url = window.location.pathname;
+        var filename = url.substring(url.lastIndexOf('/') + 1);
+        // alert(filename);
+        switch (filename) {
+            case "analytics.html":
+                $('#dashboard').addClass('active');
+                break;
+            case "avail-single.html":
+                $('#avail-single').addClass('active');
+                break;
+
+            case "drivers.html":
+                $('#drivers').addClass('active');
+                break;
+
+            case "farmers.html":
+                $('#farming').addClass('active');
+                break;
+
+            case "tips.html":
+                $('#tips').addClass('active');
+                break;
+
+            case "request.html":
+                $('#request').addClass('active');
+                break;
+
+            default:
+                $('#dashboard').addClass('active');
+
+
+        }
+        // $('li a').click(function (e) {
+        //     e.preventDefault();
+        //     $('a').removeClass('active');
+        //     $(this).addClass('active');
+        // });
+    </script>
     <div class="sidebar-wrapper">
         <ul class="nav">
-            <li class="active">
+            <li id="dashboard">
                 <a href="analytics.html">
                     <i class="now-ui-icons design_app"></i>
                     <p>Dashboard</p>
                 </a>
             </li>
+<<<<<<< HEAD
             <li>
                 <a href="farmers.html">
+=======
+            <li id="avail-single">
+                <a href="avail-single.html">
+>>>>>>> 1ca7791bd7758a474b7ab51e6e58af9ed07f8547
                     <i class="now-ui-icons ui-1_bell-53 "></i>
                     <p>Farmers</p>
                 </a>
             </li>
+<<<<<<< HEAD
 
             <li>
                 <a href="drivers.html ">
+=======
+            <li id="drivers">
+                <a href="drivers.html">
+>>>>>>> 1ca7791bd7758a474b7ab51e6e58af9ed07f8547
                     <i class="now-ui-icons ui-1_bell-53 "></i>
                     <p>Drivers</p>
                 </a>
             </li>
+<<<<<<< HEAD
 
             <li>
                 <a href="avail-single.html">
+=======
+            <li id="farming">
+                <a href="farmers.html">
+>>>>>>> 1ca7791bd7758a474b7ab51e6e58af9ed07f8547
                     <i class="now-ui-icons ui-1_bell-53 "></i>
                     <p>Food Availability</p>
                 </a>
@@ -41,21 +95,25 @@
                     <p>Profile</p>
                 </a>
             </li>
+<<<<<<< HEAD
 
             <li>
+=======
+            <li id="tips">
+>>>>>>> 1ca7791bd7758a474b7ab51e6e58af9ed07f8547
                 <a href="tips.html">
                     <i class="now-ui-icons ui-1_bell-53 "></i>
                     <p>Food Tips</p>
                 </a>
             </li>
-            <li>
+            <li id="request">
                 <a href="request.html">
                     <i class="now-ui-icons ui-1_bell-53 "></i>
                     <p>Requests</p>
                 </a>
             </li>
-            <li>
-                <a href="index.html">
+            <li onclick="logout()">
+                <a href="">
                     <i class="now-ui-icons ui-1_bell-53 "></i>
                     <p>Log out</p>
                 </a>
@@ -63,3 +121,12 @@
         </ul>
     </div>
 </div>
+
+<script>
+    const logout = () => {
+        localStorage.removeItem('user_hash');
+        localStorage.removeItem('user_email');
+        localStorage.removeItem('user_name');
+        window.location = "https://joshuachinemezu.github.io/foodtics/login.html"
+    }
+</script>
