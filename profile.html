@@ -31,80 +31,66 @@
     </style>
 
     <script>
+
         $(function () {
             $("#sidebar-component").load("sidebar-component.html");
         });
+
     </script>
 
 </head>
 
 <body class="">
     <script>
-        function getParameterByName(name, url) {
-            if (!url) url = window.location.href;
-            name = name.replace(/[\[\]]/g, '\\$&');
-            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-                results = regex.exec(url);
-            if (!results) return null;
-            if (!results[2]) return '';
-            return decodeURIComponent(results[2].replace(/\+/g, ' '));
-        }
-
-        function getURLParameter(name) {
-            return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) ||
-                [null, ''])[1].replace(/\+/g, '%20')) || null;
-        }
-        var theparam = getParameterByName('q');
-        lat = getURLParameter('lat');
-        long = getURLParameter('long');
-        name = getURLParameter('name');
-        showName = name
-
-        // var newSrc = 'axXfI1j48srWNf4lrX6f';
-        // var app_id = theparam.replace(/(app_id=).*?(&)/, newSrc + '$1');
-
-        moveto = theparam + '&app_code=u_k-IvJxGiY0Kwgx0zxUuw'
-
-        // var new_code = 'u_k-IvJxGiY0Kwgx0zxUuw';
-        // var app_code = theparam.replace(/(app_code=).*?(&)/, '$1' + new_code);
-        console.log(long)
+        var cat = localStorage.getItem("user_hash");
+        var name = localStorage.getItem("user_name");
+        var email = localStorage.getItem("user_email");
 
         $.ajax({
-            xhrFields: {
-                withCredentials: true
-            },
-            crossDomain: true,
+
 
             // http://foodtics.local/getUserinfo
 
-            type: "GET",
+            type: "POST",
+
+            url: "https://foodtics.000webhostapp.com/getUserinfo",
+            data: {
+                userHash: cat
+            },
 
             // data: {
             //     userHash: cat
             // },
             // headers: { "app_id": "axXfI1j48srWNf4lrX6f", "app_code": "u_k-IvJxGiY0Kwgx0zxUuw" },
 
-            dataType: "jsonp",
+            dataType: "json",
 
             cache: false,
-            url: moveto,
+            // url: moveto,
 
 
-            beforeSend: function (xhr) {
-                xhr.setRequestHeader("Authorization", "Bearer axXfI1j48srWNf4lrX6f")
-                $(".spinner").show();
+            beforeSend: function () {
+                // $(".spinner").show();
             },
 
             success: function (jsonStr) {
-                $("#spinner").hide();
+                $(".spinner").hide();
+
+
+                document.getElementById("userProfile").style.display = "block"
+                document.getElementById('name').innerHTML = name
+                document.getElementById('email').innerHTML = email
+                // document.getElementById('helpId').innerHTML = jsonStr.name
+                // document.getElementById('namey').innerHTML = jsonStr.name
+                // var namey = jsonStr.name
+
 
                 // $("#btn").show();
                 // console.log(jsonStr);
                 // lat = jsonStr.location.position[0]
                 // long = jsonStr.location.position[1]
 
-                document.getElementById('helpId').innerHTML = jsonStr.name
-                document.getElementById('namey').innerHTML = jsonStr.name
+
                 var namey = jsonStr.name
                 console.log(lat)
                 try {
@@ -168,10 +154,20 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card card-stats">
-                            <div class="card-body">
+
+                            <div class="spinner">
+                                <div class="bounce1"></div>
+                                <div class="bounce2"></div>
+                                <div class="bounce3"></div>
+                            </div>
+                            <div class="card-body" id="userProfile">
                                 <h4 style="display: inline;" id="helpId">Profile</h4>
                                 <a class="btn bg-green text-white pull-right" href="edit-profile.html" role="button">Edit Profile</a>
                                 <hr>
+                                <script>
+                                    document.getElementById("userProfile").style.display = "none"
+
+                                </script>
                                 <div class="row">
                                     <div class="col-md-2">
                                         <div class="profile-preview mb-80" style="background-image: url('dashboard/img/profile.png'); margin-bottom: 30px;" id="pf_img"></div>
@@ -182,7 +178,7 @@
                                         <div class="">
                                             <div class="form-group">
                                                 <label class="dispp-label" for="">Name:</label>
-                                                <span class="dispp" id="namey" class="">Seyikemi Sojinrin</span>
+                                                <span class="dispp" id="name" class="" id="name"></span>
                                                 <br>
                                             </div>
 
@@ -191,18 +187,18 @@
                                                 <span class="dispp" id="location" class="">Lagos</span>
                                             </div>
                                             <div class="form-group">
-                                                <label class="dispp-label" for="">Address:</label>
-                                                <span class="dispp" id="address" class=""> 34, Alagomeji, Yaba, Lagos</span>
+                                                <label class="dispp-label" for="">Email:</label>
+                                                <span class="dispp" id="email" class=""></span>
                                             </div>
                                             <div class="form-group">
                                                 <label class="dispp-label" for="">Phone:</label>
-                                                <span class="dispp" id="mobileno" class="">+23452738998 </span>
+                                                <!-- <span class="dispp" id="mobileno" class="">+23452738998 </span> -->
                                             </div>
                                             <!-- <div class="form-group">
                                                 <label class="dispp-label" for="">Other Products:</label>
                                                 <span class="dispp" id="helpId" class=""> Cereals, Legumes</span>
                                             </div> -->
-                                            <a class="btn bg-green text-white" href="edit-profile.html" role="button">Edit Profile</a>
+                                            <!-- <a class="btn bg-green text-white" href="edit-profile.html" role="button">Edit Profile</a> -->
                                         </div>
                                     </div>
                                     <div class="col-md-5">
@@ -236,6 +232,7 @@
                     <div class="copyright ">
                         &copy;
                         <script>
+
                             document.write(new Date().getFullYear())
                         </script>
                         <a href="# " target="_blank ">Foodtics</a>. Coded by
