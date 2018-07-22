@@ -477,7 +477,7 @@ output {
 }
 
 .bg-image {
-  background-image: url('../img/bg-fruit.jpg');
+  background-image: url('../img/bg-fruit.png');
   background-size: cover;
   background-position: center center;
 }
@@ -547,7 +547,7 @@ output {
 }
 
 .bg-overlay {
-  background: linear-gradient(#000000b3, #000000b3), url(../img/bg-fruit.jpg);
+  background: linear-gradient(#000000b3, #000000b3), url(../img/bg-fruit.png);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
