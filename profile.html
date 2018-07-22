@@ -92,7 +92,7 @@
 
 
                 var namey = jsonStr.name
-                console.log(lat)
+                // console.log(lat)
                 try {
                     if (typeof (jsonStr.contacts.phone) != undefined) {
                         document.getElementById('mobileno').innerHTML = jsonStr.contacts.phone[0].value
@@ -103,8 +103,8 @@
                     }
                 }
 
-                document.getElementById('location').innerHTML = jsonStr.location.address.city
-                document.getElementById('address').innerHTML = jsonStr.location.address.street
+                // document.getElementById('location').innerHTML = jsonStr.location.address.city
+                // document.getElementById('address').innerHTML = jsonStr.location.address.street
                 // document.getElementById('pfImg').style.backgroundImage = jsonStr.icon
 
                 var src1 = jsonStr.icon
