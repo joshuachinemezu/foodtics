@@ -18,70 +18,28 @@
     <!-- CSS Files -->
     <link href="dashboard/css/bootstrap.min.css" rel="stylesheet" />
     <link href="dashboard/css/now-ui-dashboard.css?v=1.0.1" rel="stylesheet" />
+    <!-- <link href="assets/css/custom.css" rel="stylesheet" /> -->
+
+    <script>
+        document.getElementById('spinner').style.display = "none";
+    </script>
 
     <link href="dashboard/demo/demo.css" rel="stylesheet" />
     <link href="dashboard/custom.css" rel="stylesheet" />
+    <script src="dashboard/js/core/jquery.min.js "></script>
+
+    <script> 
+        $(function () {
+            $("#sidebar-component").load("sidebar-component.html");
+        });
+    </script>
 
 </head>
 
 <body class="">
+
     <div class="wrapper ">
-        <div class="sidebar" data-color="orange">
-            <div class="logo">
-                <!-- <a href="#" class="simple-text logo-mini">
-                    <Fieldset:disabled></Fieldset:disabled>
-                </a> -->
-                <a href="#" class="simple-text logo-normal text-center">
-                    <img src="dashboard/img/Foodtics-white.svg" class="img-fluid" alt="" style="width: 123px;">
-                </a>
-            </div>
-            <div class="sidebar-wrapper">
-                <ul class="nav">
-                    <li>
-                        <a href="analytics.html">
-                            <i class="now-ui-icons design_app"></i>
-                            <p>Dashboard</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="availabilty.html ">
-                            <i class="now-ui-icons ui-1_bell-53 "></i>
-                            <p>Food Availability</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="drivers.html ">
-                            <i class="now-ui-icons ui-1_bell-53 "></i>
-                            <p>Drivers</p>
-                        </a>
-                    </li>
-                    <li class="active">
-                        <a href="farmers.html">
-                            <i class="now-ui-icons ui-1_bell-53 "></i>
-                            <p>Farmers</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="tips.html">
-                            <i class="now-ui-icons ui-1_bell-53 "></i>
-                            <p>Food Tips</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="nutritional.html">
-                            <i class="now-ui-icons ui-1_bell-53 "></i>
-                            <p>Nutritional Values</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="index.html">
-                            <i class="now-ui-icons ui-1_bell-53 "></i>
-                            <p>Log out</p>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+        <div id="sidebar-component"></div>
         <div class="main-panel ">
             <div class="topy-bar text-right">
                 <i class="now-ui-icons users_single-02 "></i>
@@ -97,7 +55,7 @@
                                 <h6>Search By:</h6>
                                 <div class="row">
                                     <div class="col-md-5">
-                                        <div class="form-group label-floating">
+                                        <div class="form-group label-floating" style="margin-top: 8px;">
                                             <select class="form-control sign-input" name="" onchange="warningaa(this);">
                                                 <div class="form-group label-floating" style="margin-top: 8px;"></div>
 
@@ -110,7 +68,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-5">
-                                        <div class="form-group label-floating" style="margin-top: 8px;">
+                                        <div class="form-group label-floating">
                                             <div class="form-group label-floating" style="margin-top: 8px;">
                                                 <select class="form-control sign-input" name="">
                                                     <option selected>Select Location</option>
@@ -131,6 +89,11 @@
                                 </div>
                                 <hr>
                                 <!-- <a href="order-driver.html" class=" pull-right btn">Make new Request</a> -->
+                                <div class="spinner" id="spinner">
+                                    <div class="bounce1"></div>
+                                    <div class="bounce2"></div>
+                                    <div class="bounce3"></div>
+                                </div>
                                 <div class="table-responsive" id="farmers">
 
                                     <h6 style="display: inline-block;">Search Result</h6>
@@ -204,7 +167,6 @@
         </div>
 </body>
 <!--   Core JS Files   -->
-<script src="dashboard/js/core/jquery.min.js "></script>
 <script src="dashboard/js/core/popper.min.js "></script>
 <script src="dashboard/js/core/bootstrap.min.js "></script>
 <script src="dashboard/js/plugins/perfect-scrollbar.jquery.min.js "></script>
@@ -215,10 +177,11 @@
 <script src="dashboard/js/now-ui-dashboard.js?v=1.0.1 "></script>
 <script src="dashboard/demo/demo.js "></script>
 <script>
+    $(".spinner").hide();
 
     document.getElementById("farmers").style.display = "none";
     const gothere = (url) => {
-        window.location = 'http://foodtics.design/farmers.html?q=' + url;
+        window.location = 'http://foodtics.design/farmer-single.html?q=' + url;
     }
 
     function warningaa(obj) {
@@ -239,11 +202,12 @@
                 cache: false,
 
                 beforeSend: function () {
-                    // $("#btn").hide();
+                    $("#farmers").hide();
+                    $(".spinner").show();
                 },
 
                 success: function (jsonStr) {
-                    // $("#loader").hide();
+                    $("#spinner").hide();
 
                     // $("#btn").show();
                     $("#farmers").slideDown();
@@ -254,7 +218,7 @@
                         html += '<tr>';
                         html += '<td>' + jsonStr.results[i].title + '</td>';
                         html += '<td>' + jsonStr.results[i].vicinity + '</td>';
-                        html += '<td>' + jsonStr.results[i].distance + '</td>';
+                        html += '<td>' + jsonStr.results[i].distance / 1000 + 'km</td>';
                         url = "'" + jsonStr.results[i].href + "'";
                         html += '<td><button onclick=' + '"gothere(' + url + ')" class="btn bg-green text-white btn-sm"> View More</button></td>';
                         html += '</tr>';

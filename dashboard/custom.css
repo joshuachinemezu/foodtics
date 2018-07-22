@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Amiko');
+@import url("https://fonts.googleapis.com/css?family=Amiko");
 body,
 h1,
 h2,
@@ -10,99 +10,151 @@ h6,
 .h2,
 .h3,
 .h4 {
-    font-family: 'Amiko', sans-serif;
-    font-weight: 300;
-    line-height: 1.5em;
+  font-family: "Amiko", sans-serif;
+  font-weight: 300;
+  line-height: 1.5em;
 }
 
 .sidebar[data-color="orange"]:after,
 .off-canvas-sidebar[data-color="orange"]:after {
-    background-color: #0E7935 !important;
+  background-color: #0e7935 !important;
 }
 
-.sidebar[data-color="orange"] .nav li.active>a {
-    border-radius: 0px !important;
+.sidebar[data-color="orange"] .nav li.active > a {
+  border-radius: 0px !important;
 }
 
-.sidebar[data-color="orange"] .nav li.active>a {
-    color: #0E7935 !important;
+.sidebar[data-color="orange"] .nav li.active > a {
+  color: #0e7935 !important;
 }
 
 .sidebar .logo:after,
 .off-canvas-sidebar .logo:after {
-    background: rgba(255, 255, 255, 0);
+  background: rgba(255, 255, 255, 0);
 }
 
-.sidebar[data-color="orange"] .nav li.active>a i {
-    color: #0E7935 !important;
+.sidebar[data-color="orange"] .nav li.active > a i {
+  color: #0e7935 !important;
 }
 
 .panel-header {
-    background: linear-gradient(to right, #d19900 0%, #c28e00 60%, #9e7400 100%)
+  background: linear-gradient(to right, #d19900 0%, #c28e00 60%, #9e7400 100%);
 }
 
 .widget-img {
-    width: 65px;
+  width: 65px;
 }
 
 .bg-yellow {
-    background-color: #FFB900;
+  background-color: #ffb900;
 }
 
 .btn-white {
-    background-color: white;
-    color: black;
+  background-color: white;
+  color: black;
 }
 
 .bg-green {
-    background-color: #0e7935;
-    color: black;
+  background-color: #0e7935;
+  color: black;
 }
 
 .bg-grey {
-    background-color: #a7a7a7;
+  background-color: #a7a7a7;
 }
 
 .tip-head {
-    margin-left: 12px;
-    font-size: 16px;
-    margin-top: 10px;
-    font-weight: bold;
+  margin-left: 12px;
+  font-size: 16px;
+  margin-top: 10px;
+  font-weight: bold;
 }
 
 .topy-bar {
-    padding: 19px 30px;
-    background-color: white;
+  padding: 19px 30px;
+  background-color: white;
 }
 
 .sign-input {
-    border: 1px solid #dedede !important;
-    background-color: white;
-    border: 0px;
-    border-radius: 0px;
-    width: 100% !important;
-    height: 40px !important;
+  border: 1px solid #dedede !important;
+  background-color: white;
+  border: 0px;
+  border-radius: 0px;
+  width: 100% !important;
+  height: 40px !important;
 }
 
 .text-green {
-    color: #0e7935;
+  color: #0e7935;
 }
 
 .profile-preview {
-    height: 138px;
-    width: 100%;
-    border-radius: 13px;
-    /* background-color: red; */
-    background-size: cover;
-    background-position: center;
+  height: 138px;
+  width: 100%;
+  border-radius: 13px;
+  /* background-color: red; */
+  background-size: cover;
+  background-position: center;
 }
 
 .dispp {
-    font-size: 14px;
-    margin-left: 18px;
+  font-size: 14px;
+  margin-left: 18px;
 }
 
 .dispp-label {
-    font-size: 16px !important;
-    margin-top: 5px !important;
+  font-size: 16px !important;
+  margin-top: 5px !important;
+}
+
+/* Loader CSS */
+
+.spinner {
+  margin: 35px auto;
+  width: 70px;
+  text-align: center;
+}
+
+.spinner > div {
+  width: 18px;
+  height: 18px;
+  background-color: #0e7935;
+  border-radius: 100%;
+  display: inline-block;
+  -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+}
+
+.spinner .bounce1 {
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+
+.spinner .bounce2 {
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+
+@-webkit-keyframes sk-bouncedelay {
+  0%,
+  80%,
+  100% {
+    -webkit-transform: scale(0);
+  }
+  40% {
+    -webkit-transform: scale(1);
+  }
+}
+
+@keyframes sk-bouncedelay {
+  0%,
+  80%,
+  100% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+  40% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
 }

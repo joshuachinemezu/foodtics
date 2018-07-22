@@ -21,71 +21,123 @@
 
     <link href="dashboard/demo/demo.css" rel="stylesheet" />
     <link href="dashboard/custom.css" rel="stylesheet" />
+    <script src="dashboard/js/core/jquery.min.js "></script>
+
+    <script> 
+        $(function () {
+            $("#sidebar-component").load("sidebar-component.html");
+        });
+    </script>
 
 </head>
 
 <body class="">
+    <script>
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+        var theparam = getParameterByName('q');
+        // var newSrc = 'axXfI1j48srWNf4lrX6f';
+        // var app_id = theparam.replace(/(app_id=).*?(&)/, newSrc + '$1');
+
+        moveto = theparam + '&app_code=u_k-IvJxGiY0Kwgx0zxUuw'
+
+        // var new_code = 'u_k-IvJxGiY0Kwgx0zxUuw';
+        // var app_code = theparam.replace(/(app_code=).*?(&)/, '$1' + new_code);
+        console.log(theparam)
+
+        $.ajax({
+            xhrFields: {
+                withCredentials: true
+            },
+            crossDomain: true,
+
+            // http://foodtics.local/getUserinfo
+
+            type: "GET",
+
+            // data: {
+            //     userHash: cat
+            // },
+            // headers: { "app_id": "axXfI1j48srWNf4lrX6f", "app_code": "u_k-IvJxGiY0Kwgx0zxUuw" },
+
+            dataType: "jsonp",
+
+            cache: false,
+            url: moveto,
+
+
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("Authorization", "Bearer axXfI1j48srWNf4lrX6f")
+                $(".spinner").show();
+            },
+
+            success: function (jsonStr) {
+                $("#spinner").hide();
+
+                // $("#btn").show();
+                console.log(jsonStr);
+
+
+                document.getElementById('helpId').innerHTML = jsonStr.name
+                try {
+                    if (typeof (jsonStr.contacts.phone) != undefined) {
+                        document.getElementById('mobileno').innerHTML = jsonStr.contacts.phone[0].value
+                    }
+                }
+                catch (e) {
+                    if (e.name == "ReferenceError") {
+
+                    }
+                }
+
+                document.getElementById('location').innerHTML = jsonStr.location.address.city
+                document.getElementById('address').innerHTML = jsonStr.location.address.street
+                document.getElementById('pf_img').style.backgroundImage = jsonStr.location.icon
+
+
+
+
+                if (jsonStr.status == "error") {
+                    if (jsonStr.code == 0) {
+                        toastr.warning("Sorry fields cannot be null");
+                    } else {
+                        toastr.error("Error in operation, Please try again");
+                    }
+                }
+
+                if (jsonStr.status == "success") {
+                    if (jsonStr.code == 1) {
+
+                        // toastr.success("Welcome " + jsonStr.fullname);
+                        var username = localStorage.getItem("user_name");
+                        document.getElementById("fullname").innerHTML = username;
+
+                        // window.location =
+                        //     "https://joshuachinemezu.github.io/foodtics/analytics.html"
+                    } else {
+                        toastr.warning("Invalid login details, Please try again");
+                    }
+                }
+
+                // $("#result").text(JSON.stringify(jsonStr));
+            }
+        });
+    </script>
+
     <div class="wrapper ">
-        <div class="sidebar" data-color="orange">
-            <div class="logo">
-                <!-- <a href="#" class="simple-text logo-mini">
-                    <Fieldset:disabled></Fieldset:disabled>
-                </a> -->
-                <a href="#" class="simple-text logo-normal text-center">
-                    <img src="dashboard/img/Foodtics-white.svg" class="img-fluid" alt="" style="width: 123px;">
-                </a>
-            </div>
-            <div class="sidebar-wrapper">
-                <ul class="nav">
-                    <li>
-                        <a href="analytics.html">
-                            <i class="now-ui-icons design_app"></i>
-                            <p>Dashboard</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="availabilty.html ">
-                            <i class="now-ui-icons ui-1_bell-53 "></i>
-                            <p>Food Availability</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="drivers.html ">
-                            <i class="now-ui-icons ui-1_bell-53 "></i>
-                            <p>Drivers</p>
-                        </a>
-                    </li>
-                    <li class="active">
-                        <a href="farmers.html">
-                            <i class="now-ui-icons ui-1_bell-53 "></i>
-                            <p>Farmers</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="tips.html">
-                            <i class="now-ui-icons ui-1_bell-53 "></i>
-                            <p>Food Tips</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="nutritional.html">
-                            <i class="now-ui-icons ui-1_bell-53 "></i>
-                            <p>Nutritional Values</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="index.html">
-                            <i class="now-ui-icons ui-1_bell-53 "></i>
-                            <p>Log out</p>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+        <div id="sidebar-component"></div>
         <div class="main-panel ">
             <div class="topy-bar text-right">
                 <i class="now-ui-icons users_single-02 "></i>
-                Hello, Adeniran Opeyemi</div>
+                <span id="fullname"></span>
+            </div>
 
             <div class="content " style="margin-top: 17px;">
                 <div class="row">
@@ -97,33 +149,33 @@
                                 <hr>
                                 <div class="row">
                                     <div class="col-md-2">
-                                        <div class="profile-preview mb-80" style="background-image: url('Dashboard/img/profile.png'); margin-bottom: 30px;">
+                                        <div class="profile-preview mb-80" style="background-image: url('Dashboard/img/profile.png'); margin-bottom: 30px;" id="pf_img">
                                         </div>
                                     </div>
                                     <div class="col-md-5">
                                         <div class="">
                                             <div class="form-group">
                                                 <label class="dispp-label" for="">Name:</label>
-                                                <span class="dispp" id="helpId" class="">Joshua Adewale</span>
+                                                <span class="dispp" id="helpId" class=""></span>
                                                 <br>
                                             </div>
 
                                             <div class="form-group">
                                                 <label class="dispp-label" for="">Location:</label>
-                                                <span class="dispp" id="helpId" class="">Lagos</span>
+                                                <span class="dispp" id="location" class=""></span>
                                             </div>
                                             <div class="form-group">
                                                 <label class="dispp-label" for="">Address:</label>
-                                                <span class="dispp" id="helpId" class=""> Plot 2, Lekki Farm Avenue, Off Admiralty Way, Lekki Phase 1, Eti-Osa, Lagos</span>
+                                                <span class="dispp" id="address" class=""> </span>
                                             </div>
                                             <div class="form-group">
                                                 <label class="dispp-label" for="">Phone:</label>
-                                                <span class="dispp" id="helpId" class=""> 0812229392223</span>
+                                                <span class="dispp" id="mobileno" class=""> </span>
                                             </div>
-                                            <div class="form-group">
+                                            <!-- <div class="form-group">
                                                 <label class="dispp-label" for="">Other Products:</label>
                                                 <span class="dispp" id="helpId" class=""> Cereals, Legumes</span>
-                                            </div>
+                                            </div> -->
                                             <a class="btn bg-green text-white" href="#" role="button">Contact</a>
                                         </div>
                                     </div>
@@ -179,11 +231,24 @@
 <script src="dashboard/js/plugins/bootstrap-notify.js "></script>
 <script src="dashboard/js/now-ui-dashboard.js?v=1.0.1 "></script>
 <script src="dashboard/demo/demo.js "></script>
+<script language=javascript src='http://maps.google.com/maps/api/js?sensor=false'></script>
 <script>
+
     $(document).ready(function () {
-        // Javascript method's body can be found in assets/js/demos.js
-        demo.initDashboardPageCharts();
-    });
+        var myLatlng = new google.maps.LatLng(-25.363882, 131.044922);
+        var myOptions = {
+            zoom: 4,
+            center: myLatlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        map = new google.maps.Map($('#map'), myOptions);
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map,
+            title: "Fast marker"
+        });
+    } 
 </script>
+
 
 </html>
