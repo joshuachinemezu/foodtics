@@ -1,4 +1,4 @@
-# foodtics
+# Foodtics
 
 <!-- [![Build Status](https://travis-ci.org/joshuachinemezu/ci-toastr.svg?branch=master)](https://travis-ci.org/joshuachinemezu/ci-toastr) -->
 
@@ -19,14 +19,13 @@ This serious problem in the society brings the birth of foodtics
 
 ## Solution/Strategies
 
-##Food Analysis
+## Food Analysis
 We provide analysis on when food crops should be availble for users
 
-##Find Drivers
+## Find Drivers
 Find Drivers that are willing to pick up fam produce from the farm and deliver to you.
 
-#Farm Connect
-Foodtics is an agric-tech platform that is focused on solving food shortage in our country. We plan to reduce food wastage and improve distribution of farm produce within the country
+## Farm Connect Foodtics is an agric-tech platform that is focused on solving food shortage in our country. We plan to reduce food wastage and improve distribution of farm produce within the country
 
 ## Origin
 
