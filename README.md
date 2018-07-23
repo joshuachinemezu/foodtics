@@ -25,7 +25,8 @@ We provide analysis on when food crops should be availble for users
 ## Find Drivers
 Find Drivers that are willing to pick up fam produce from the farm and deliver to you.
 
-## Farm Connect Foodtics is an agric-tech platform that is focused on solving food shortage in our country. We plan to reduce food wastage and improve distribution of farm produce within the country
+## Farm Connect 
+Foodtics is an agric-tech platform that is focused on solving food shortage in our country. We plan to reduce food wastage and improve distribution of farm produce within the country
 
 ## Origin
 
